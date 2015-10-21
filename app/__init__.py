@@ -1,5 +1,5 @@
 from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy
+from flask.ext.sqlalchemy import SQLAlchemy, get_debug_queries
 from flask.ext.migrate import Migrate
 
 db = SQLAlchemy()
@@ -10,11 +10,13 @@ def create_app():
     app.config.from_object('config')
 
     db.init_app(app)
-    migrate = Migrate(app, db)
+    Migrate(app, db)
 
-    from .views.v1 import api as api_v1_blueprint
+    from .views.cms import cms as cms_blueprint
+    app.register_blueprint(cms_blueprint, url_prefix='/cms')
+
+    from .views.api_v1 import api as api_v1_blueprint
     app.register_blueprint(api_v1_blueprint, url_prefix='/api/v1')
-
 
     @app.after_request
     def after_request(response):
