@@ -11,3 +11,4 @@ alembic==0.8.3
 itsdangerous==0.24
 python-editor==0.4
 redis==2.10.3
+gunicorn==19.3.0
