@@ -1,0 +1,8 @@
+{
+  "name": "python/flask docker environment",
+  "description": "Docker configulation for run python/flask application.",
+  "image": "heroku/python",
+  "addons": [
+    "heroku-postgresql"
+  ]
+}
