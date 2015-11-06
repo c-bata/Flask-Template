@@ -3,15 +3,15 @@ from urllib.parse import urljoin
 
 from ..models import User
 
-api = Blueprint('api', __name__)
+accounts = Blueprint('accounts', __name__)
 
 
-@api.route('/')
+@accounts.route('/')
 def index():
     return jsonify(users=urljoin(request.host_url, url_for('.users')))
 
 
-@api.route('/users')
+@accounts.route('/users')
 def users():
     users = User.query.all()
     return jsonify(Users=[u.serialize for u in users])
