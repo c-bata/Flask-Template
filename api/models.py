@@ -25,7 +25,7 @@ class User(db.Model):
     def verify_password(self, password):
         return check_password_hash(self.password_hash, password)
 
-    def create_token(self):
+    def generate_jwt(self):
         payload = {
             'user_id': self.id,
             'iat': datetime.utcnow(),
@@ -35,7 +35,7 @@ class User(db.Model):
         return token.decode('unicode_escape')
 
     @staticmethod
-    def parse_token(request):
+    def parse_jwt(request):
         token = request.headers.get('Authorization').split()[1]
         return jwt.decode(token, current_app.config['SECRET_KEY'])
 
