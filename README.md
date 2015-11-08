@@ -15,6 +15,8 @@ This is flask awesome libraries and example application.
 - [redis](https://github.com/andymccurdy/redis-py)
 - [pymongo](http://github.com/mongodb/mongo-python-driver)
 
+- [Flask-Admin](https://github.com/mrjoes/flask-admin/)
+
 
 #### Authentication
 
@@ -77,6 +79,8 @@ itsdangerous.BadSignature: Signature b'token' does not match
 
 - [Flask-Script](https://github.com/smurfix/flask-script)
 - [salchemyjsonschema](https://github.com/podhmo/alchemyjsonschema)
+- [Flask Debug-toolbar](https://github.com/mgood/flask-debugtoolbar)
+- [flask-profiler](https://github.com/muatik/flask-profiler)
 
 
 #### Profiling
