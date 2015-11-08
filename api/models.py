@@ -12,6 +12,7 @@ class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(128), index=True, nullable=False)
     email = db.Column(db.String(128), index=True, nullable=False)
+    is_superuser = db.Column(db.Boolean, nullable=False, default=False)
     password_hash = db.Column(db.String(128), nullable=False)
     records = db.relationship('Record', backref='user')
 
