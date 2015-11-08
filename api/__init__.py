@@ -1,8 +1,8 @@
 from flask import Flask
-from flask.ext.sqlalchemy import SQLAlchemy, get_debug_queries
+from flask.ext.sqlalchemy import get_debug_queries
 from flask.ext.migrate import Migrate
 
-db = SQLAlchemy()
+from .models import db
 
 
 def create_app():
