@@ -13,8 +13,8 @@ def create_app():
     Migrate(app, db)
 
     # Register the blueprint applications
-    from .v1.accounts import accounts as accounts_blueprint
-    app.register_blueprint(accounts_blueprint, url_prefix='/api/v1/accounts')
+    from .v1 import api as api_blueprint
+    app.register_blueprint(api_blueprint, url_prefix='/v1')
 
     # Define special routes
     @app.after_request
