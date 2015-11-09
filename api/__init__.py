@@ -1,8 +1,10 @@
 from flask import Flask
 from flask.ext.sqlalchemy import get_debug_queries
 from flask.ext.migrate import Migrate
+from flask_admin import Admin
 
-from .models import db
+from .admin.views import CustomAdminIndexView, UserAdmin, RecordAdmin
+from .models import db, User, Record
 
 
 def create_app():
@@ -15,6 +17,12 @@ def create_app():
     # Register the blueprint applications
     from .v1 import api as api_blueprint
     app.register_blueprint(api_blueprint, url_prefix='/v1')
+
+    # Flask-Admin
+    admin = Admin(app, name='研究時間記録', index_view=CustomAdminIndexView(),
+                  template_mode='bootstrap3')
+    admin.add_view(UserAdmin(User, db.session, name='ユーザ'))
+    admin.add_view(RecordAdmin(Record, db.session, name='研究記録'))
 
     # Define special routes
     @app.after_request
