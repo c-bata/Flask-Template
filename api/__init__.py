@@ -1,9 +1,9 @@
 from flask import Flask, jsonify
-from flask.ext.sqlalchemy import get_debug_queries
 from flask.ext.migrate import Migrate
+from flask.ext.sqlalchemy import get_debug_queries
 from flask_admin import Admin
 
-from .admin.views import UserAdmin, RecordAdmin
+from api.admins import UserAdmin, RecordAdmin
 from .models import db, User, Record
 
 
