@@ -1,11 +1,4 @@
-import flask_admin
 from flask.ext.admin.contrib.sqla import ModelView
-
-
-class CustomAdminIndexView(flask_admin.AdminIndexView):
-    @flask_admin.expose('/')
-    def index(self):
-        return 'Hello World'
 
 
 class UserAdmin(ModelView):

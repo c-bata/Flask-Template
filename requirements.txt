@@ -14,3 +14,4 @@ python-editor==0.4
 redis==2.10.5
 SQLAlchemy==1.0.9
 Werkzeug==0.10.4
+WTForms==2.0.2

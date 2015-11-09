@@ -1,9 +1,9 @@
-from flask import Flask
+from flask import Flask, jsonify
 from flask.ext.sqlalchemy import get_debug_queries
 from flask.ext.migrate import Migrate
 from flask_admin import Admin
 
-from .admin.views import CustomAdminIndexView, UserAdmin, RecordAdmin
+from .admin.views import UserAdmin, RecordAdmin
 from .models import db, User, Record
 
 
@@ -19,8 +19,7 @@ def create_app():
     app.register_blueprint(api_blueprint, url_prefix='/v1')
 
     # Flask-Admin
-    admin = Admin(app, name='研究時間記録', index_view=CustomAdminIndexView(),
-                  template_mode='bootstrap3')
+    admin = Admin(app, name='研究時間記録', template_mode='bootstrap3')
     admin.add_view(UserAdmin(User, db.session, name='ユーザ'))
     admin.add_view(RecordAdmin(Record, db.session, name='研究記録'))
 
@@ -40,12 +39,20 @@ def create_app():
     @app.errorhandler(404)
     def page_not_found(e):
         """Return a custom 404 error."""
-        return 'Sorry, Nothing at this URL.', 404
+        return jsonify(
+            error='Not found',
+            message='Sorry, Nothing at this api.',
+            status=404
+        )
 
     @app.errorhandler(500)
     def page_not_found(e):
         """Return a custom 500 error."""
-        return 'Sorry, unexpected error: {}'.format(e), 500
+        return jsonify(
+            error='Internal server error',
+            message='Sorry, unexpected error: {}'.format(e),
+            status=500
+        )
 
     return app
 
