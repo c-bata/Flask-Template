@@ -1,4 +1,4 @@
-from app import create_app
+from api import create_app
 from flask.ext.script import Manager
 from flask.ext.migrate import MigrateCommand
 
